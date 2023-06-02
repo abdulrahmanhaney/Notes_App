@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/constants.dart';
 import 'package:notes_app/views/notes_view.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class NotesApp extends StatelessWidget {
         fontFamily: 'Poppins',
         brightness: Brightness.dark,
         useMaterial3: true,
+        colorSchemeSeed: kPrimaryColor,
       ),
       home: const SafeArea(
         child: NotesView(),
