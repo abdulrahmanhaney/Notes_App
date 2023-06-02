@@ -8,21 +8,23 @@ class NotesView extends StatelessWidget {
   static String id = 'NotesView';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const NotesViewBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return const CustomNotesButtonCheet();
-            },
-          );
-        },
-        backgroundColor: kPrimaryColor,
-        child: const Icon(
-          Icons.add,
-          color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        body: const NotesViewBody(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return const CustomNotesButtonCheet();
+              },
+            );
+          },
+          backgroundColor: kPrimaryColor,
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
         ),
       ),
     );
