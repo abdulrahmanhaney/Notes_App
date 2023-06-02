@@ -6,7 +6,7 @@ import 'package:notes_app/views/notes_view.dart';
 
 void main() async {
   await Hive.initFlutter();
-
+  await Hive.openBox(kNotesBox);
   runApp(const NotesApp());
 }
 
@@ -16,21 +16,22 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          NotesView.id: (context) {
-            return const NotesView();
-          },
-          EditNoteView.id: (context) {
-            return const EditNoteView();
-          }
+      debugShowCheckedModeBanner: false,
+      routes: {
+        NotesView.id: (context) {
+          return const NotesView();
         },
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-          brightness: Brightness.dark,
-          useMaterial3: true,
-          colorSchemeSeed: kPrimaryColor,
-        ),
-        initialRoute: NotesView.id);
+        EditNoteView.id: (context) {
+          return const EditNoteView();
+        }
+      },
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        colorSchemeSeed: kPrimaryColor,
+      ),
+      initialRoute: NotesView.id,
+    );
   }
 }
