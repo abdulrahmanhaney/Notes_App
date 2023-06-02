@@ -8,29 +8,29 @@ class CustomNotesButtonCheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: EdgeInsets.all(15),
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 5,
             ),
             CustomTextField(
               maxLines: 1,
               hint: 'Note Title',
             ),
-            const SizedBox(
+            SizedBox(
               height: 15,
             ),
             CustomTextField(
               maxLines: 7,
               hint: 'Note Content',
             ),
-            const SizedBox(
+            SizedBox(
               height: 100,
             ),
-            const CustomButton()
+            CustomButton()
           ],
         ),
       ),
