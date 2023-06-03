@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 
+import 'colors_listview.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
-
-class CustomNotesButtonCheet extends StatelessWidget {
-  const CustomNotesButtonCheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(15),
-        child: AddNoteForm(),
-      ),
-    );
-  }
-}
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -60,17 +50,31 @@ class _AddNoteFormState extends State<AddNoteForm> {
             },
           ),
           const SizedBox(
-            height: 100,
+            height: 15,
           ),
-          CustomButton(
-            onTap: () {
-              if (formkey.currentState!.validate()) {
-                formkey.currentState!.save();
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
-            },
+          const ColorsList(),
+          const SizedBox(
+            height: 15,
+          ),
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) => CustomButton(
+              isLoading: state is AddNoteLoading ? true : false,
+              onTap: () {
+                if (formkey.currentState!.validate()) {
+                  formkey.currentState!.save();
+                  var noteModel = NoteModel(
+                    color: Colors.green.value,
+                    date: DateTime.now().toString(),
+                    title: title!,
+                    content: subtitle!,
+                  );
+                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            ),
           )
         ],
       ),
