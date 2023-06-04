@@ -17,7 +17,6 @@ class _NotesListViewState extends State<NotesListView> {
   @override
   void initState() {
     BlocProvider.of<NotesCubit>(context).getNotes();
-
     super.initState();
   }
 

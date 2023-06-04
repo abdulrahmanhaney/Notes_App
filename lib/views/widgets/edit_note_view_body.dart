@@ -12,15 +12,20 @@ class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
 
   final NoteModel note;
+
   @override
   State<EditNoteViewBody> createState() => _EditNoteViewBodyState();
 }
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
+  late String? content, title;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String title = widget.note.title;
-    String content = widget.note.title;
     return Padding(
       padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
       child: Column(
@@ -29,8 +34,8 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             icon: Icons.check,
             title: 'Edit Note',
             onTap: () {
-              widget.note.title = title;
-              widget.note.content = content;
+              widget.note.title = title ?? widget.note.title;
+              widget.note.content = content ?? widget.note.content;
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).getNotes();
               ScaffoldMessenger.of(context).showSnackBar(
@@ -52,7 +57,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   maxLines: 1,
                   intitial: widget.note.title,
                   onChange: (value) {
-                    title = value!;
+                    title = value;
                   },
                 ),
                 const SizedBox(
@@ -63,7 +68,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                   maxLines: 7,
                   intitial: widget.note.content,
                   onChange: (value) {
-                    content = value!;
+                    content = value;
                   },
                 ),
                 const SizedBox(

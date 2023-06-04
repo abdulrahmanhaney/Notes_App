@@ -7,6 +7,7 @@ import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/simple_bloc_observer.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 import 'package:notes_app/views/notes_view.dart';
+import 'package:notes_app/views/splash_view.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -34,8 +35,9 @@ class NotesApp extends StatelessWidget {
         routes: {
           NotesView.id: (context) => const NotesView(),
           EditNoteView.id: (context) => const EditNoteView(),
+          SplashView.id: (context) => const SplashView(),
         },
-        initialRoute: NotesView.id,
+        initialRoute: SplashView.id,
       ),
     );
   }
